@@ -1,0 +1,91 @@
+@startuml EVAX_MVP_Architecture_NoInterfaces
+
+!define ICONURL https://www.plantuml.com/gsoc-sv-2022-icons
+!define ICON(size) <img:ICONURL/size>
+
+!define USER actor ICON(16x16)
+
+class LoginView {
+  +displayLoginScreen()
+}
+
+class AccountManagementView {
+  +displayAccountManagementScreen()
+}
+
+class VaccinationDetailsView {
+  +displayVaccinationDetailsScreen()
+}
+
+class NotificationView {
+  +displayNotificationUpcomingScreen()
+  +displayNotificationCompletedScreen()
+}
+
+class CertificateView {
+  +displayVaccinationCertificateScreen()
+}
+
+class LoginPresenter {
+  - view: LoginView
+  - model: Model
+
+  +LoginPresenter(view: LoginView, model: Model)
+  +onLoginClicked()
+}
+
+class AccountManagementPresenter {
+  - view: AccountManagementView
+  - model: Model
+
+  +AccountManagementPresenter(view: AccountManagementView, model: Model)
+  +onAccountManagementClicked()
+}
+
+class VaccinationDetailsPresenter {
+  - view: VaccinationDetailsView
+  - model: Model
+
+  +VaccinationDetailsPresenter(view: VaccinationDetailsView, model: Model)
+  +onVaccinationDetailsClicked()
+}
+
+class NotificationPresenter {
+  - view: NotificationView
+  - model: Model
+
+  +NotificationPresenter(view: NotificationView, model: Model)
+  +onNotificationUpcomingClicked()
+  +onNotificationCompletedClicked()
+}
+
+class CertificatePresenter {
+  - view: CertificateView
+  - model: Model
+
+  +CertificatePresenter(view: CertificateView, model: Model)
+  +onVaccinationCertificateClicked()
+}
+
+class Model {
+  +loginUser(String username, String password)
+  +loadAccountDetails()
+  +loadVaccinationDetails()
+  +setNotificationUpcoming()
+  +setNotificationCompleted()
+  +generateVaccinationCertificate()
+}
+
+LoginView --> LoginPresenter : view
+AccountManagementView --> AccountManagementPresenter : view
+VaccinationDetailsView --> VaccinationDetailsPresenter : view
+NotificationView --> NotificationPresenter : view
+CertificateView --> CertificatePresenter : view
+
+LoginPresenter --> Model : model
+AccountManagementPresenter --> Model : model
+VaccinationDetailsPresenter --> Model : model
+NotificationPresenter --> Model : model
+CertificatePresenter --> Model : model
+
+@enduml

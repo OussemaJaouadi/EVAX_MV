@@ -1,0 +1,26 @@
+@startuml hackathon_usecase
+!define ICONURL https://www.plantuml.com/gsoc-sv-2022-icons
+!define ICON(size) <img:ICONURL/size>
+
+!define USER actor ICON(16x16)
+
+actor User as User
+
+rectangle EVAX {
+  usecase "Login/Register" as LoginRegister
+  usecase "Account Management" as AccountManagement
+  usecase "Get Vaccination Details" as GetVaccinationDetails
+  usecase "Notification for Upcoming Vaccination" as NotificationUpcoming
+  usecase "Notification for Completed Vaccination" as NotificationCompleted
+  usecase "Vaccination Certificate" as VaccinationCertificate
+}
+
+User --> LoginRegister : Requests
+LoginRegister --> AccountManagement
+LoginRegister --> GetVaccinationDetails
+LoginRegister --> NotificationUpcoming
+LoginRegister --> NotificationCompleted
+LoginRegister --> VaccinationCertificate
+
+@enduml
+

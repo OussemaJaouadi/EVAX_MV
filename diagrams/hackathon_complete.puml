@@ -1,0 +1,142 @@
+@startuml EVAX_MVP_Architecture
+
+!define ICONURL https://www.plantuml.com/gsoc-sv-2022-icons
+!define ICON(size) <img:ICONURL/size>
+
+!define USER actor ICON(16x16)
+
+interface LoginView {
+  void displayLoginScreen()
+}
+
+interface AccountManagementView {
+  void displayAccountManagementScreen()
+}
+
+interface VaccinationDetailsView {
+  void displayVaccinationDetailsScreen()
+}
+
+interface NotificationView {
+  void displayNotificationUpcomingScreen()
+  void displayNotificationCompletedScreen()
+}
+
+interface CertificateView {
+  void displayVaccinationCertificateScreen()
+}
+
+interface LoginPresenter {
+  void onLoginClicked()
+}
+
+interface AccountManagementPresenter {
+  void onAccountManagementClicked()
+}
+
+interface VaccinationDetailsPresenter {
+  void onVaccinationDetailsClicked()
+}
+
+interface NotificationPresenter {
+  void onNotificationUpcomingClicked()
+  void onNotificationCompletedClicked()
+}
+
+interface CertificatePresenter {
+  void onVaccinationCertificateClicked()
+}
+
+interface Model {
+  void loginUser(String username, String password)
+  void loadAccountDetails()
+  void loadVaccinationDetails()
+  void setNotificationUpcoming()
+  void setNotificationCompleted()
+  void generateVaccinationCertificate()
+}
+
+class ConcreteLoginView implements LoginView {
+  +displayLoginScreen()
+}
+
+class ConcreteAccountManagementView implements AccountManagementView {
+  +displayAccountManagementScreen()
+}
+
+class ConcreteVaccinationDetailsView implements VaccinationDetailsView {
+  +displayVaccinationDetailsScreen()
+}
+
+class ConcreteNotificationView implements NotificationView {
+  +displayNotificationUpcomingScreen()
+  +displayNotificationCompletedScreen()
+}
+
+class ConcreteCertificateView implements CertificateView {
+  +displayVaccinationCertificateScreen()
+}
+
+class ConcreteLoginPresenter implements LoginPresenter {
+  - view: LoginView
+  - model: Model
+
+  +ConcreteLoginPresenter(view: LoginView, model: Model)
+  +onLoginClicked()
+}
+
+class ConcreteAccountManagementPresenter implements AccountManagementPresenter {
+  - view: AccountManagementView
+  - model: Model
+
+  +ConcreteAccountManagementPresenter(view: AccountManagementView, model: Model)
+  +onAccountManagementClicked()
+}
+
+class ConcreteVaccinationDetailsPresenter implements VaccinationDetailsPresenter {
+  - view: VaccinationDetailsView
+  - model: Model
+
+  +ConcreteVaccinationDetailsPresenter(view: VaccinationDetailsView, model: Model)
+  +onVaccinationDetailsClicked()
+}
+
+class ConcreteNotificationPresenter implements NotificationPresenter {
+  - view: NotificationView
+  - model: Model
+
+  +ConcreteNotificationPresenter(view: NotificationView, model: Model)
+  +onNotificationUpcomingClicked()
+  +onNotificationCompletedClicked()
+}
+
+class ConcreteCertificatePresenter implements CertificatePresenter {
+  - view: CertificateView
+  - model: Model
+
+  +ConcreteCertificatePresenter(view: CertificateView, model: Model)
+  +onVaccinationCertificateClicked()
+}
+
+class ConcreteModel implements Model {
+  +loginUser(String username, String password)
+  +loadAccountDetails()
+  +loadVaccinationDetails()
+  +setNotificationUpcoming()
+  +setNotificationCompleted()
+  +generateVaccinationCertificate()
+}
+
+ConcreteLoginView --> ConcreteLoginPresenter : view
+ConcreteAccountManagementView --> ConcreteAccountManagementPresenter : view
+ConcreteVaccinationDetailsView --> ConcreteVaccinationDetailsPresenter : view
+ConcreteNotificationView --> ConcreteNotificationPresenter : view
+ConcreteCertificateView --> ConcreteCertificatePresenter : view
+
+ConcreteLoginPresenter --> ConcreteModel : model
+ConcreteAccountManagementPresenter --> ConcreteModel : model
+ConcreteVaccinationDetailsPresenter --> ConcreteModel : model
+ConcreteNotificationPresenter --> ConcreteModel : model
+ConcreteCertificatePresenter --> ConcreteModel : model
+
+@enduml

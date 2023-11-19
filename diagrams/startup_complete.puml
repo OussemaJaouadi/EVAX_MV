@@ -1,0 +1,85 @@
+@startuml complete_startup
+
+class ConcreteViewModel {
+  +loginCommand()
+  +accountManagementCommand()
+  +vaccinationDetailsCommand()
+  +notificationCommand()
+  +certificateCommand()
+  +vaccinationHistoryCommand()
+  +rescheduleVaccinationCommand()
+  +requestChangeCommand()
+  +notifyDateChangeCommand()
+}
+
+class Model {
+  +loginUser(String username, String password)
+  +loadAccountDetails()
+  +loadVaccinationDetails()
+  +setNotificationUpcoming()
+  +setNotificationCompleted()
+  +generateVaccinationCertificate()
+  +loadVaccinationHistory()
+  +rescheduleVaccination()
+  +requestChangeOfVaccinationType()
+  +notifyUserOnDateChange()
+}
+
+class LoginView {
+  +display()
+  +bindToViewModel(viewModel: ConcreteViewModel)
+}
+
+class AccountManagementView {
+  +display()
+  +bindToViewModel(viewModel: ConcreteViewModel)
+}
+
+class VaccinationDetailsView {
+  +display()
+  +bindToViewModel(viewModel: ConcreteViewModel)
+}
+
+class NotificationView {
+  +display()
+  +bindToViewModel(viewModel: ConcreteViewModel)
+}
+
+class CertificateView {
+  +display()
+  +bindToViewModel(viewModel: ConcreteViewModel)
+}
+
+class VaccinationHistoryView {
+  +display()
+  +bindToViewModel(viewModel: ConcreteViewModel)
+}
+
+class RescheduleVaccinationView {
+  +display()
+  +bindToViewModel(viewModel: ConcreteViewModel)
+}
+
+class RequestChangeView {
+  +display()
+  +bindToViewModel(viewModel: ConcreteViewModel)
+}
+
+class NotifyDateChangeView {
+  +display()
+  +bindToViewModel(viewModel: ConcreteViewModel)
+}
+
+ConcreteViewModel --> LoginView : viewModel
+ConcreteViewModel --> AccountManagementView : viewModel
+ConcreteViewModel --> VaccinationDetailsView : viewModel
+ConcreteViewModel --> NotificationView : viewModel
+ConcreteViewModel --> CertificateView : viewModel
+ConcreteViewModel --> VaccinationHistoryView : viewModel
+ConcreteViewModel --> RescheduleVaccinationView : viewModel
+ConcreteViewModel --> RequestChangeView : viewModel
+ConcreteViewModel --> NotifyDateChangeView : viewModel
+
+ConcreteViewModel --> Model : model
+
+@enduml
